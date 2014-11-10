@@ -11267,185 +11267,255 @@ run();
         }
     }
 
-    function generateIDSequences(selector, options, ps) {
+    function generateIDSequences(selector, options) {
         
-        var parentSelector  = getParentSelector(selector);
-        var node            = getNode(selector);
-        var id              = getID(node);
-        var tag             = getTag(node);
-        var classes         = getClasses(node);
-        var minDepth        = 0;//options['depth'];  
         
-        if(options['id']['allowed'] == true && id != '') {
+        var temp 			= selector.split(',');
+        selector 			= temp[0].trim();
+        var ps 				= '';
+        if(temp.length > 1)
+        	ps = temp[1];
 
-            var maxDepth = options['depth'];
-            maxDepth--;
-            if(ps != '')
-            	maxDepth--;
-            
-            var IDSequences = [];
-            IDSequences.push(id);
-            if(parentSelector != '') {
-                IDSequences = getIDSequences(parentSelector, maxDepth, IDSequences).unique();
-            }            
-            for(var j=0; j<IDSequences.length; j++) {
-                var IDSequence = IDSequences[j];
-                if(ps != '')
-                	IDSequence = ps + ' ' + IDSequence;
-                if(getDepth(IDSequence) >= minDepth && using(IDSequence,options['use'].slice(0))) {
-                    var index = -1;
-                    IDSequence = filterBeforeID(IDSequence);
-                    index = map.indexOf(IDSequence);
-                    if(index == -1) {
-                        map.push(IDSequence);
-                        index = map.indexOf(IDSequence);
-                    }
-                    variables.push(index);
-                }
+        if(selector.length > 0) {
+	        var parentSelector  = getParentSelector(selector);
+	        var node            = getNode(selector);
+	        var id              = getID(node);
+	        var tag             = getTag(node);
+	        var classes         = getClasses(node);
+	        var minDepth        = 0;//options['depth'];  
+	        
+
+	        
+	        if(options['id']['allowed'] == true && id != '') {
+
+	            var maxDepth = options['depth'];
+	            maxDepth--;
+	            if(ps != '')
+	            	maxDepth--;
+	            
+	            var IDSequences = [];
+	            IDSequences.push(id);
+	            if(parentSelector != '') {
+	                IDSequences = getIDSequences(parentSelector, maxDepth, IDSequences).unique();
+	            }            
+	            for(var j=0; j<IDSequences.length; j++) {
+	                var IDSequence = IDSequences[j];
+	                if(ps != '')
+	                	IDSequence = ps + ' ' + IDSequence;
+	                if(getDepth(IDSequence) >= minDepth && using(IDSequence,options['use'].slice(0))) {
+	                    var index = -1;
+	                    IDSequence = filterBeforeID(IDSequence);
+	                    index = map.indexOf(IDSequence);
+	                    if(index == -1) {
+	                        map.push(IDSequence);
+	                        index = map.indexOf(IDSequence);
+	                    }
+	                    variables.push(index);
+	                }
+	            }
+	        }
+	    } else {
+	    	var index = -1;
+	        IDSequence = ps;
+            index = map.indexOf(IDSequence);
+            if(index == -1) {
+                map.push(IDSequence);
+                index = map.indexOf(IDSequence);
             }
-        }
+            variables.push(index);
+	    }
     }
 
-    function generateTagSequences(selector, options, ps) {
+    function generateTagSequences(selector, options) {
         
-        var parentSelector  = getParentSelector(selector);
-        var node            = getNode(selector);
-        var id              = getID(node);
-        var tag             = getTag(node);
-        var classes         = getClasses(node);
-        var minDepth        = 0;//options['depth'];  
-        
-        if(options['tag']['allowed'] == true && tag != '') {
+        var temp 			= selector.split(',');
+        selector 			= temp[0].trim();
+        var ps 				= '';
+        if(temp.length > 1)
+        	ps = temp[1];
 
-            var maxDepth = options['depth'];
-            maxDepth--;
-            if(ps != '')
-            	maxDepth--;
-            
-            var tagSequences = [];
-            tagSequences.push(tag);
-            
-            if(parentSelector != '') {
-                tagSequences = getTagSequences(parentSelector, maxDepth, tagSequences).unique();
-            }
+        if(selector.length > 0) {
+	        var parentSelector  = getParentSelector(selector);
+	        var node            = getNode(selector);
+	        var id              = getID(node);
+	        var tag             = getTag(node);
+	        var classes         = getClasses(node);
+	        var minDepth        = 0;//options['depth'];  
+	        
+	        if(options['tag']['allowed'] == true && tag != '') {
 
-            for(var j=0; j<tagSequences.length; j++) {
-            	var tagSequence = tagSequences[j];
-                if(ps != '')
-                	tagSequence = ps + ' ' + tagSequence;
-                
-                if(getDepth(tagSequence) >= minDepth && using(tagSequence,options['use'].slice(0))) {
-                    var index = -1;
-                    index = map.indexOf(tagSequence);
-                    if(index == -1) {
-                        map.push(tagSequence);
-                        index = map.indexOf(tagSequence);
-                    }
-                    variables.push(index);
-                }
+	            var maxDepth = options['depth'];
+	            maxDepth--;
+	            if(ps != '')
+	            	maxDepth--;
+	            
+	            var tagSequences = [];
+	            tagSequences.push(tag);
+	            
+	            if(parentSelector != '') {
+	                tagSequences = getTagSequences(parentSelector, maxDepth, tagSequences).unique();
+	            }
+
+	            for(var j=0; j<tagSequences.length; j++) {
+	            	var tagSequence = tagSequences[j];
+	                if(ps != '')
+	                	tagSequence = ps + ' ' + tagSequence;
+	                
+	                if(getDepth(tagSequence) >= minDepth && using(tagSequence,options['use'].slice(0))) {
+	                    var index = -1;
+	                    index = map.indexOf(tagSequence);
+	                    if(index == -1) {
+	                        map.push(tagSequence);
+	                        index = map.indexOf(tagSequence);
+	                    }
+	                    variables.push(index);
+	                }
+	            }
+	        }
+        } else {
+	    	var index = -1;
+	        var tagSequence = ps;
+            index = map.indexOf(tagSequence);
+            if(index == -1) {
+                map.push(tagSequence);
+                index = map.indexOf(tagSequence);
             }
-        }
-        if(debug) console.log(variables);
+            variables.push(index);
+	    }
     }
 
-    function generateClassSequences(selector, options, ps) {
+    function generateClassSequences(selector, options) {
         
-        var parentSelector  = getParentSelector(selector);
-        var node            = getNode(selector);
-        var id              = getID(node);
-        var tag             = getTag(node);
-        var classes         = getClasses(node);
-        var minDepth        = 0;//options['depth'];  
-        
-        if(options['classes']['allowed'] == true && classes.length > 0) {
+        var temp 			= selector.split(',');
+        selector 			= temp[0].trim();
+        var ps 				= '';
+        if(temp.length > 1)
+        	ps = temp[1];
 
-            var maxDepth = options['depth'];
-            maxDepth--;
-            if(ps != '')
-            	maxDepth--;
-            if(ps != '')
-            	maxDepth--;
-            
-            var classSequences = [];
-            classSequences = classSequences.concat(classes);
-            
-            if(parentSelector != '') {
-                classSequences = getClassSequences(parentSelector, maxDepth, classSequences).unique();
-            }
+        if(selector.length > 0) {
+	        var parentSelector  = getParentSelector(selector);
+	        var node            = getNode(selector);
+	        var id              = getID(node);
+	        var tag             = getTag(node);
+	        var classes         = getClasses(node);
+	        var minDepth        = 0;//options['depth']; 
+	        
+	        if(options['classes']['allowed'] == true && classes.length > 0) {
 
-            for(var j=0; j<classSequences.length; j++) {
-                var classSequence = classSequences[j];
-                if(ps != '')
-                	classSequence = ps + ' ' + classSequence;
-                if(getDepth(classSequence) >= minDepth && using(classSequence,options['use'].slice(0))) {
-                    var index = -1;
-                    index = map.indexOf(classSequence);
-                    if(index == -1) {
-                        map.push(classSequence);
-                        index = map.indexOf(classSequence);
-                    }
-                    variables.push(index);
-                }
+	            var maxDepth = options['depth'];
+	            maxDepth--;
+	            if(ps != '')
+	            	maxDepth--;
+	            if(ps != '')
+	            	maxDepth--;
+	            
+	            var classSequences = [];
+	            classSequences = classSequences.concat(classes);
+	            
+	            if(parentSelector != '') {
+	                classSequences = getClassSequences(parentSelector, maxDepth, classSequences).unique();
+	            }
+
+	            for(var j=0; j<classSequences.length; j++) {
+	                var classSequence = classSequences[j];
+	                if(ps != '')
+	                	classSequence = ps + ' ' + classSequence;
+	                if(getDepth(classSequence) >= minDepth && using(classSequence,options['use'].slice(0))) {
+	                    var index = -1;
+	                    index = map.indexOf(classSequence);
+	                    if(index == -1) {
+	                        map.push(classSequence);
+	                        index = map.indexOf(classSequence);
+	                    }
+	                    variables.push(index);
+	                }
+	            }
+	        }
+	    } else {
+	    	var index = -1;
+	        var classSequence = ps;
+            index = map.indexOf(classSequence);
+            if(index == -1) {
+                map.push(classSequence);
+                index = map.indexOf(classSequence);
             }
-        }
+            variables.push(index);
+	    }
     }
 
-    function generateMixSequences(selector, options, ps) {
+    function generateMixSequences(selector, options) {
         
-        var parentSelector  = getParentSelector(selector);
-        var node            = getNode(selector);
-        var id              = getID(node);
-        var tag             = getTag(node);
-        var classes         = getClasses(node);
-        var minDepth        = 0;//options['depth'];  
-        
-        if(!options['id']['allowed']) {
-        	id = '';
-        }
-        
-        if(!options['tag']['allowed']) {
-            tag = '';
-        }
-        
-        if(!options['classes']['allowed']) {
-            classes = [];
-        }
+        var temp 			= selector.split(',');
+        selector 			= temp[0].trim();
+        var ps 				= '';
+        if(temp.length > 1)
+        	ps = temp[1];
 
-        if(options['mix']['allowed'] == true) {
-            
-            var mixSequences = [];
-            if(id != '')
-                mixSequences.push(id);
-           	if(tag != '')
-                mixSequences.push(tag);
-            mixSequences = mixSequences.concat(classes);
+        if(selector.length > 0) {
+	        var parentSelector  = getParentSelector(selector);
+	        var node            = getNode(selector);
+	        var id              = getID(node);
+	        var tag             = getTag(node);
+	        var classes         = getClasses(node);
+	        var minDepth        = 0;//options['depth'];  
+	        
+	        if(!options['id']['allowed']) {
+	        	id = '';
+	        }
+	        
+	        if(!options['tag']['allowed']) {
+	            tag = '';
+	        }
+	        
+	        if(!options['classes']['allowed']) {
+	            classes = [];
+	        }
 
-            var maxDepth = options['depth'];
-            maxDepth--;
-            if(ps != '')
-            	maxDepth--;
-            
-            if(parentSelector != '') {
-                mixSequences = getMixSequences(parentSelector, maxDepth, mixSequences).unique();
+	        if(options['mix']['allowed'] == true) {
+	            
+	            var mixSequences = [];
+	            if(id != '')
+	                mixSequences.push(id);
+	           	if(tag != '')
+	                mixSequences.push(tag);
+	            mixSequences = mixSequences.concat(classes);
+
+	            var maxDepth = options['depth'];
+	            maxDepth--;
+	            if(ps != '')
+	            	maxDepth--;
+	            
+	            if(parentSelector != '') {
+	                mixSequences = getMixSequences(parentSelector, maxDepth, mixSequences).unique();
+	            }
+
+	            for(var j=0; j<mixSequences.length; j++) {
+	                var mixSequence = mixSequences[j];
+	                if(ps != '') {
+	                	mixSequence = ps + ' ' + mixSequence;
+	                }
+	                if(getDepth(mixSequence) >= minDepth && using(mixSequence,options['use'].slice(0)) && isMixed(mixSequence)) {
+	                    var index = -1;
+	                    mixSequence = filterBeforeID(mixSequence);
+	                    index = map.indexOf(mixSequence);
+	                    if(index == -1) {
+	                        map.push(mixSequence);
+	                        index = map.indexOf(mixSequence);
+	                    }
+	                    variables.push(index);
+	                }
+	            }
+	        }
+	    } else {
+	    	var index = -1;
+	        var mixSequence = ps;
+            index = map.indexOf(mixSequence);
+            if(index == -1) {
+                map.push(mixSequence);
+                index = map.indexOf(mixSequence);
             }
-
-            for(var j=0; j<mixSequences.length; j++) {
-                var mixSequence = mixSequences[j];
-                if(ps != '') {
-                	mixSequence = ps + ' ' + mixSequence;
-                }
-                if(getDepth(mixSequence) >= minDepth && using(mixSequence,options['use'].slice(0)) && isMixed(mixSequence)) {
-                    var index = -1;
-                    mixSequence = filterBeforeID(mixSequence);
-                    index = map.indexOf(mixSequence);
-                    if(index == -1) {
-                        map.push(mixSequence);
-                        index = map.indexOf(mixSequence);
-                    }
-                    variables.push(index);
-                }
-            }
-        }
+            variables.push(index);
+	    }
     }
 
     function getPriority(i, options){
@@ -11464,32 +11534,97 @@ run();
     
     }
 
+    function getNodes(tree,root) {
+
+    	if(tree[root] == '') {
+    		if(root == 'root')
+    			return [];
+    		else
+    			return [root];
+    	}
+    	
+    	var single = false;
+    	while(tree[root].split(',').length == 1){
+    		single = true;
+    		if(tree[root] == '')
+    			break;
+    		root = tree[root];	
+    	}
+    	if(single == true)
+    		return [root];
+    	else {
+    		var temp = tree[root].split(',');
+    		var ret = [];
+    		for(var i=0; i<temp.length; i++){
+    			ret = ret.concat(getNodes(tree,temp[i]));
+    		}
+    		return ret;
+    	}
+    }
+    function mixAndMatch(array){
+
+    	
+    	var tree = [];
+    	tree['root']	= '';
+
+    	for(var i=0; i<array.length; i++){
+    		
+    		var root = 'root';
+    		var pointer = tree[root].split(',');
+    			
+    		var temp = array[i].trim().split(' ');
+    		for(var j=0; j<temp.length; j++){
+    			var id = getID(temp[j]);
+    			if(id != ''){
+    				if(pointer.indexOf(id) == -1) {
+    					if(tree[root] != '')
+    						tree[root] += ',';
+    					tree[root] += id;
+    				}
+
+    				if(tree[id] == undefined)
+    					tree[id] = '';
+    				root = id;
+    				pointer = tree[root].split(',');
+    			}
+    		}
+    	}
+
+
+		return getNodes(tree,'root');
+
+    }
+
     function sharedStart(array){
-    	var ret = '';
+    	//mixAndMatch(array));
+/*    	var temp = [];
     	if(array.length == 1){
-    		ret = array[0];
+    		temp = array[0];
     	} else {
 	    	var A= array.slice(0).sort(), 
 	    	word1= A[0], word2= A[A.length-1], 
 	    	L= word1.length, i= 0;
 	    	while(i<L && word1.charAt(i)=== word2.charAt(i)) i++;
-	    	ret = word1.substring(0, i);
+	    	temp = word1.substring(0, i);
 	    }
-	    if(ret.length > 1) {
-    		ret = ret.substring(0,ret.lastIndexOf(' '));
-    	} else {
-    		return '';
-    	}
-    	if(ret.indexOf('#') >= 0) {
-    		ret = ret.substring(ret.lastIndexOf('#'));
-	    	if(ret.indexOf(' ') > 0)
-    			ret = ret.substring(0,ret.indexOf(' '));
-	    	if(ret.indexOf('.') > 0)
-	    		ret = ret.substring(0,ret.indexOf('.'));
-	    	return ret;
-    	} else {
-    		return '';
-    	}
+	    if(temp.length > 1) {
+    		temp = temp.substring(0,temp.lastIndexOf(' '));
+    		if(temp.indexOf('#') >= 0) {
+    			temp = temp.substring(temp.lastIndexOf('#'));
+	    		if(temp.indexOf(' ') > 0)
+    				temp = temp.substring(0,temp.indexOf(' '));
+	    		if(temp.indexOf('.') > 0)
+	    			temp = temp.substring(0,temp.indexOf('.'));
+	    		return [temp];
+	    	} 
+
+    		} else {
+    			return mixAndMatch(array);
+    		}
+    	else {
+    		return mixAndMatch(array);
+    	}*/
+    	return '';
 	}
 
 	function minimize(selector, id){
@@ -11499,8 +11634,8 @@ run();
 		for(var i=0; i<selectors.length; i++){
 			var node = selectors[i];
 			var tid = getID(node);
-			if(tid == id)
-				return ret;
+			if(id.indexOf(tid) > -1)
+				return ret.trim() + ',' + tid;
 			ret = node + ' ' + ret;
 		}
 		ret = ret.trim();//.split(' ').reverse().join(' ');
@@ -11510,29 +11645,28 @@ run();
     function parse(selectors, nonSelectors, options) {
 
         
-        var ps = '';
-        var pns = '';
+        var ps = [];
+        var pns = [];
 
         if(options['selectLevel'] < 2) {
-        	if(selectors.length > 0) {
-	        	ps = sharedStart(selectors);
+        	var all = selectors.slice(0);
+        	all = all.concat(nonSelectors);
+
+        	if(all.length > 0) {
+	        	ps = mixAndMatch(all);
 	        	
 	        	if(ps.length > 0){
-	        		for(var i=0; i<selectors.length; i++){
-	        			selectors[i] = minimize(selectors[i],ps);
+	        		for(var i=0; i<all.length; i++){
+	        			all[i] = minimize(all[i],ps);
+	        			if(i<selectors.length)
+	        				selectors[i] = all[i];
+	        			else
+	        				nonSelectors[i-selectors.length] = all[i];
 	        		}
 	        	}
 	        }
-	        
-	        if(nonSelectors.length > 0) {
-		        pns = sharedStart(nonSelectors);
-		        if(pns.length > 0){
-	        		for(var i=0; i<nonSelectors.length; i++){
-	        			nonSelectors[i] = minimize(nonSelectors[i],pns);
-	        		}
-	        	}
-		    }
 		}
+		
         var order           = [];
             
         for(var j=0; j<4; j++){
@@ -11546,10 +11680,10 @@ run();
             variables           = [];
             for(var j=0; j<4; j++){
                 switch (order[j]) {
-                    case "id"       : generateIDSequences(selector, options, ps); break;
-                    case "tag"      : generateTagSequences(selector, options, ps); break;
-                    case "classes"  : generateClassSequences(selector, options, ps); break;
-                    case "mix"      : generateMixSequences(selector, options, ps); break;
+                    case "id"       : generateIDSequences(selector, options); break;
+                    case "tag"      : generateTagSequences(selector, options); break;
+                    case "classes"  : generateClassSequences(selector, options); break;
+                    case "mix"      : generateMixSequences(selector, options); break;
                 }
             }
             if(debug) console.log(variables);
@@ -11564,10 +11698,10 @@ run();
             for(var j=0; j<4; j++){
                 
                 switch (order[j]) {
-                    case "id"       : generateIDSequences(nonSelector, options, pns); break;
-                    case "tag"      : generateTagSequences(nonSelector, options, pns); break;
-                    case "classes"  : generateClassSequences(nonSelector, options, pns); break;
-                    case "mix"      : generateMixSequences(nonSelector, options, pns); break;
+                    case "id"       : generateIDSequences(nonSelector, options); break;
+                    case "tag"      : generateTagSequences(nonSelector, options); break;
+                    case "classes"  : generateClassSequences(nonSelector, options); break;
+                    case "mix"      : generateMixSequences(nonSelector, options); break;
                 }
             }
 
@@ -12381,12 +12515,22 @@ function getAbstractness(selector){
 
 function postProcess() {
     
+    for(var i=0; i<selectors.length; i++){
+        var temp = selectors[i].split(",");
+        if(temp.length > 1)
+        	selectors[i] = temp[1] + ' ' + temp[0];
+        else
+        	selectors[i] = temp[0];
+    }
+        
     for(var i=0; i<output.length; i++) {
         var answer          = output[i];
         var combination     = mapBack(getPositives(answer));
+
         if(options['selectLevel'] < 1) {
-        	if($(combination.join(',')).length == $(selectors.join(',')).length)
+        	if($(combination.join(',')).length == $(selectors.join(',')).length) {
         		combinations.push(combination);	
+        	}
         }else{
 	        combinations.push(combination);
     	}
