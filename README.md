@@ -4,7 +4,7 @@ LED
 Dompletion assists developers by synthesizing CSS selectors using the examples provided by the developer. 
 
 
-## Using Dompletion
+## Using LED
 
 Currently, the Dompletion project is designed to run from the console of any web broser or can be installed as a Bookmarlet using [this](http://ece.ubc.ca/~kbajaj/led.html) link. 
 
