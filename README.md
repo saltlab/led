@@ -6,7 +6,7 @@ LED assists developers by synthesizing CSS selectors using the examples provided
 
 ## Using LED
 
-Currently, the Dompletion project is designed to run from the console of any web broser or can be installed as a Bookmarlet using [this](http://ece.ubc.ca/~kbajaj/led.html) link. 
+Currently, the LED project is designed to run from the console of any web broser or can be installed as a Bookmarlet using [this](http://ece.ubc.ca/~kbajaj/led.html) link. 
 
 ### Installation
 
