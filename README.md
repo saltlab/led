@@ -1,7 +1,7 @@
 LED
 =====
 
-Dompletion assists developers by synthesizing CSS selectors using the examples provided by the developer. 
+LED assists developers by synthesizing CSS selectors using the examples provided by the developer. 
 
 
 ## Using LED
