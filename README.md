@@ -34,5 +34,5 @@ Please follow [this](http://ece.ubc.ca/~kbajaj/led.html) link for a video demo o
 
 ## Contributing
 
-Your feedback is valued! Please use the [Issue tracker](https://github.com/erkartik91/led/issues) for reporting bugs or feature requests.
+Your feedback is valued! Please use the [Issue tracker](https://github.com/saltlab/led/issues) for reporting bugs or feature requests.
 
