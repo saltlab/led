@@ -10,12 +10,14 @@ Currently, the LED project is designed to run from the console of any web broser
 
 ### Installation
 
-In terms of installation, setting up the project is easier than ever. 
+In you would like to setup LED on your local machine, please follow the following steps
 
-* Copy the JavaScript code from the script.js file
-* Open the web application you are working on.
-* Open browser console.
-* Paste the JavaScript code and hit Enter key.
+* Make sure your have node.js setup on your system.
+* Clone this repository.
+* Navigate to the cloned repository.
+* Run npm install
+* Run node index.js
+* Open http://localhost:5000/ and follow the steps to bookmark the link
 
 ### Running the Tool 
 
