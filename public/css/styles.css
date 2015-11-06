@@ -1,0 +1,11 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+body .content {
+  width: 500px;
+  margin: 0px auto;
+  margin-top: 100px;
+  text-align: center;
+}

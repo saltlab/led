@@ -8,7 +8,7 @@ ledConfig = {
         renderer     : 'js/renderer.js',
         index        : 'js/index.js'
     },
-    jquery       : 'https://code.jquery.com/jquery-2.1.4.min.js',
+    jquery       : '//code.jquery.com/jquery-2.1.4.min.js',
 
     ledCssUrl        : 'css/led.css',
     ledCheckId       : 'ledAddedInDom'
@@ -22,6 +22,10 @@ var initializeLED = function () {
         document.body.appendChild(jqueryJsScript);
     }
 
+    setTimeout(injectLED, 200);
+}
+
+var injectLED = function () {
     if ($('#' + ledConfig.ledCheckId).length == 0) {
         var $ledCheckDiv = $('<div>').attr('id', ledConfig.ledCheckId).appendTo('body');
 
@@ -36,9 +40,6 @@ var initializeLED = function () {
          }
 
     }
-
-
-
 }
 
 initializeLED();

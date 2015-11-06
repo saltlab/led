@@ -6,7 +6,8 @@ module.exports = function(grunt) {
     less: {
       development : {
         files: {
-          "public/css/led.css": "src/less/led.less"
+          "public/css/led.css": "src/less/led.less",
+          "public/css/styles.css": "src/less/styles.less"
         }
       }
     }
