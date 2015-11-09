@@ -668,7 +668,7 @@
   border: solid 3px #AAAAAA !important;
   background-color: #FFFFFF !important;
   opacity: 0.9 !important;
-  overflow: auto !important;
+  overflow: visible !important;
 }
 .cleanslate #handle {
   background-color: #CCCCCC !important;
@@ -753,45 +753,6 @@
   overflow: auto !important;
   padding: 5px !important;
 }
-.cleanslate .gradient {
-  background: #cfe7fa !important;
-  background: -moz-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfe7fa), color-stop(100%, #6393c1)) !important;
-  background: -webkit-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
-  background: -o-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
-  background: -ms-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
-  background: linear-gradient(to bottom, #cfe7fa 0%, #6393c1 100%) !important;
-}
-.cleanslate .custom-menu {
-  z-index: 999999 !important;
-  width: 150px !important;
-  max-height: 300px !important;
-  overflow: auto !important;
-  position: absolute !important;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  padding: 5px !important;
-}
-.cleanslate .custom-menu .close {
-  width: 100% !important;
-  overflow: auto !important;
-  float: left !important;
-  text-align: right !important;
-}
-.cleanslate .custom-menu ul {
-  list-style-type: none !important;
-  float: left !important;
-  width: 110px !important;
-}
-.cleanslate .custom-menu ul li {
-  border-bottom: solid 1px white !important;
-  margin-left: -30px !important;
-  padding: 3px !important;
-}
-.cleanslate .custom-menu ul li:hover {
-  background-color: #AAAAAA !important;
-}
 .cleanslate .tooltip {
   outline: none !important;
 }
@@ -800,10 +761,11 @@
 }
 .cleanslate .tooltip:hover span {
   display: inline !important;
-  position: fixed !important;
+  position: absolute !important;
   color: #111 !important;
   border: 1px solid #DCA !important;
   background: #fffAF0 !important;
+  z-index: 10;
 }
 .cleanslate .tooltip span {
   z-index: 9999999 !important;
@@ -887,4 +849,43 @@
   width: 50px !important;
   min-height: 5px !important;
   border: solid 1px #AAAAAA !important;
+}
+.custom-menu {
+  z-index: 999999 !important;
+  width: 150px !important;
+  max-height: 300px !important;
+  overflow: auto !important;
+  position: absolute !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  padding: 5px !important;
+}
+.custom-menu.gradient {
+  background: #cfe7fa !important;
+  background: -moz-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cfe7fa), color-stop(100%, #6393c1)) !important;
+  background: -webkit-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
+  background: -o-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
+  background: -ms-linear-gradient(top, #cfe7fa 0%, #6393c1 100%) !important;
+  background: linear-gradient(to bottom, #cfe7fa 0%, #6393c1 100%) !important;
+}
+.custom-menu .close {
+  width: 100% !important;
+  overflow: auto !important;
+  float: left !important;
+  text-align: right !important;
+}
+.custom-menu ul {
+  list-style-type: none !important;
+  float: left !important;
+  width: 110px !important;
+}
+.custom-menu ul li {
+  border-bottom: solid 1px white !important;
+  margin-left: -30px !important;
+  padding: 3px !important;
+}
+.custom-menu ul li:hover {
+  background-color: #AAAAAA !important;
 }
